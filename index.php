@@ -11,6 +11,11 @@ if ( !empty( $_POST['glyphs'] ) ) {
 	$input = explode( ' ', strtolower( trim( $_POST['glyphs'] ) ) );
 
 	$glyphs = array();
+	$linesize = 20;
+
+	if ( !empty( $_POST['wrap'] ) ) {
+		$linesize = $_POST['wrap'];
+	}
 
 	foreach ( $input as $glyph ) {
 		if ( glyphExists( $glyph ) ) {
@@ -31,8 +36,8 @@ if ( !empty( $_POST['glyphs'] ) ) {
 
 	$size = sizeof( $glyphs );
 
-	if ( $size > 20 ) {
-		$size = 20;
+	if ( $size > $linesize ) {
+		$size = $linesize;
 	}
 
 	$montage = $im->montageImage( $draw, $size . 'x', '50x55+0+0', imagick::MONTAGEMODE_UNFRAME, '0x0+0+0' );
@@ -46,9 +51,18 @@ if ( !empty( $_POST['glyphs'] ) ) {
 <html>
 	<body>
 		<form method="POST">
-			<label for="glyphs">Input a sentence with glyph names in it:</label>
-			<input name="glyphs" id="glyphs" />
-			<input type="submit" value="Generate glyph sentence" />
+			<p>
+				<label for="glyphs">Input a sentence with glyph names in it:</label>
+				<input name="glyphs" id="glyphs" />
+			</p>
+			<p>
+				<label for="wrap">How many glyphs per line?</label>
+				<input name="wrap" id="wrap" />
+			</p>
+
+			<p>
+				<input type="submit" value="Generate glyph sentence" />
+			</p>
 		</form>
 	</body>
 </html>
