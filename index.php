@@ -64,6 +64,10 @@ if ( !empty( $_POST['glyphs'] ) ) {
 				<input type="submit" value="Generate glyph sentence" />
 			</p>
 		</form>
+
+		<p style="font-size: small;">
+			Glyph images from <a href="http://ingress.tv/glyphs.html">ingress.tv</a>, please be courteous when sharing their hard work and consider attributing them.
+		</p>
 	</body>
 </html>
 <?php
